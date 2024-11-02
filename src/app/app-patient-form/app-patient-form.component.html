@@ -1,0 +1,222 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Pushkar Eye Hospital - Patient Form</h2>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="patientName" class="form-label">Patient Name</label>
+            <input type="text" class="form-control" id="patientName" formControlName="patientName">
+            <div *ngIf="formControls['patientName'].touched && formControls['patientName'].invalid" class="text-danger">
+              <small *ngIf="formControls['patientName'].errors?.['required']">Patient name is required</small>
+              <small *ngIf="formControls['patientName'].errors?.['maxlength']">Name must not exceed 100 characters</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="patientRegisteredNumber" class="form-label">Patient Registered Number</label>
+            <input type="number" class="form-control" id="patientRegisteredNumber" formControlName="patientRegisteredNumber">
+            <div *ngIf="formControls['patientRegisteredNumber'].touched && formControls['patientRegisteredNumber'].invalid" class="text-danger">
+              <small *ngIf="formControls['patientRegisteredNumber'].errors?.['required']">Patient registered number is required</small>
+              <small *ngIf="formControls['patientRegisteredNumber'].errors?.['min']">Number must be positive</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="patientAge" class="form-label">Patient Age</label>
+            <input type="number" class="form-control" id="patientAge" formControlName="patientAge">
+            <div *ngIf="formControls['patientAge'].touched && formControls['patientAge'].invalid" class="text-danger">
+              <small *ngIf="formControls['patientAge'].errors?.['required']">Patient age is required</small>
+              <small *ngIf="formControls['patientAge'].errors?.['min'] || formControls['patientAge'].errors?.['max']">Age must be between 0 and 150</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="patientGender" class="form-label">Patient Gender</label>
+            <select class="form-select" id="patientGender" formControlName="patientGender">
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+            <div *ngIf="formControls['patientGender'].touched && formControls['patientGender'].invalid" class="text-danger">
+              <small *ngIf="formControls['patientGender'].errors?.['required']">Patient gender is required</small>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="patientAddress" class="form-label">Patient Address</label>
+            <textarea class="form-control" id="patientAddress" formControlName="patientAddress" rows="3"></textarea>
+            <div *ngIf="formControls['patientAddress'].touched && formControls['patientAddress'].invalid" class="text-danger">
+              <small *ngIf="formControls['patientAddress'].errors?.['required']">Patient address is required</small>
+              <small *ngIf="formControls['patientAddress'].errors?.['maxlength']">Address must not exceed 200 characters</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label for="patientAdmission" class="form-label">Date & Time of Admission</label>
+            <input type="datetime-local" class="form-control" id="patientAdmission" formControlName="patientAdmission">
+            <div *ngIf="formControls['patientAdmission'].touched && formControls['patientAdmission'].invalid" class="text-danger">
+              <small *ngIf="formControls['patientAdmission'].errors?.['required']">Time of admission is required</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="patientDischarge" class="form-label">Date & Time of Discharge</label>
+            <input type="datetime-local" class="form-control" id="patientDischarge" formControlName="patientDischarge">
+            <div *ngIf="formControls['patientDischarge'].touched && formControls['patientDischarge'].invalid" class="text-danger">
+              <small *ngIf="formControls['patientDischarge'].errors?.['required']">Time of discharge is required</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="clinicalSummary" class="form-label">Clinical Summary</label>
+          <textarea class="form-control" id="clinicalSummary" formControlName="clinicalSummary" rows="3"></textarea>
+          <div *ngIf="formControls['clinicalSummary'].touched && formControls['clinicalSummary'].invalid" class="text-danger">
+            <small *ngIf="formControls['clinicalSummary'].errors?.['required']">Clinical summary is required</small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label for="patientConsultedBy" class="form-label">Consulted By</label>
+            <input type="text" class="form-control" id="patientConsultedBy" formControlName="patientConsultedBy">
+            <div *ngIf="formControls['patientConsultedBy'].touched && formControls['patientConsultedBy'].invalid" class="text-danger">
+              <small *ngIf="formControls['patientConsultedBy'].errors?.['required']">Consulted by is required</small>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <label for="diagnosis" class="form-label">Diagnosis</label>
+            <input type="text" class="form-control" id="diagnosis" formControlName="diagnosis">
+            <div *ngIf="formControls['diagnosis'].touched && formControls['diagnosis'].invalid" class="text-danger">
+              <small *ngIf="formControls['diagnosis'].errors?.['required']">Diagnosis is required</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label for="vision" class="form-label">Vision</label>
+            <input type="text" class="form-control" id="vision" formControlName="vision">
+            <div *ngIf="formControls['vision'].touched && formControls['vision'].invalid" class="text-danger">
+              <small *ngIf="formControls['vision'].errors?.['required']">Vision is required</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="k1" class="form-label">K1</label>
+            <input type="text" class="form-control" id="k1" formControlName="k1">
+            <div *ngIf="formControls['k1'].touched && formControls['k1'].invalid" class="text-danger">
+              <small *ngIf="formControls['k1'].errors?.['required']">K1 is required</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="k2" class="form-label">K2</label>
+            <input type="text" class="form-control" id="k2" formControlName="k2">
+            <div *ngIf="formControls['k2'].touched && formControls['k2'].invalid" class="text-danger">
+              <small *ngIf="formControls['k2'].errors?.['required']">K2 is required</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="axl" class="form-label">AXL</label>
+            <input type="text" class="form-control" id="axl" formControlName="axl">
+            <div *ngIf="formControls['axl'].touched && formControls['axl'].invalid" class="text-danger">
+              <small *ngIf="formControls['axl'].errors?.['required']">AXL is required</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label for="iol" class="form-label">IOL</label>
+            <input type="text" class="form-control" id="iol" formControlName="iol">
+            <div *ngIf="formControls['iol'].touched && formControls['iol'].invalid" class="text-danger">
+              <small *ngIf="formControls['iol'].errors?.['required']">IOL is required</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="fundus" class="form-label">Fundus</label>
+            <input type="text" class="form-control" id="fundus" formControlName="fundus">
+            <div *ngIf="formControls['fundus'].touched && formControls['fundus'].invalid" class="text-danger">
+              <small *ngIf="formControls['fundus'].errors?.['required']">Fundus is required</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="sac" class="form-label">SAC</label>
+            <input type="text" class="form-control" id="sac" formControlName="sac">
+            <div *ngIf="formControls['sac'].touched && formControls['sac'].invalid" class="text-danger">
+              <small *ngIf="formControls['sac'].errors?.['required']">SAC is required</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="iop" class="form-label">IOP</label>
+            <input type="text" class="form-control" id="iop" formControlName="iop">
+            <div *ngIf="formControls['iop'].touched && formControls['iop'].invalid" class="text-danger">
+              <small *ngIf="formControls['iop'].errors?.['required']">IOP is required</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <label for="hb" class="form-label">HB</label>
+            <input type="text" class="form-control" id="hb" formControlName="hb">
+            <div *ngIf="formControls['hb'].touched && formControls['hb'].invalid" class="text-danger">
+              <small *ngIf="formControls['hb'].errors?.['required']">HB is required</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="bsl" class="form-label">BSL</label>
+            <input type="text" class="form-control" id="bsl" formControlName="bsl">
+            <div *ngIf="formControls['bsl'].touched && formControls['bsl'].invalid" class="text-danger">
+              <small *ngIf="formControls['bsl'].errors?.['required']">BSL is required</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="urineType" class="form-label">Urine Type</label>
+            <input type="text" class="form-control" id="urineType" formControlName="urineType">
+            <div *ngIf="formControls['urineType'].touched && formControls['urineType'].invalid" class="text-danger">
+              <small *ngIf="formControls['urineType'].errors?.['required']">Urine type is required</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="rx" class="form-label">Rx</label>
+            <input type="text" class="form-control" id="rx" formControlName="rx">
+            <div *ngIf="formControls['rx'].touched && formControls['rx'].invalid" class="text-danger">
+              <small *ngIf="formControls['rx'].errors?.['required']">Rx is required</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="operationNotes" class="form-label">Operation Notes</label>
+            <textarea class="form-control" id="operationNotes" formControlName="operationNotes" rows="3"></textarea>
+            <div *ngIf="formControls['operationNotes'].touched && formControls['operationNotes'].invalid" class="text-danger">
+              <small *ngIf="formControls['operationNotes'].errors?.['required']">Operation notes are required</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="postOperationNotes" class="form-label">Post Operation Notes</label>
+            <textarea class="form-control" id="postOperationNotes" formControlName="postOperationNotes" rows="3"></textarea>
+            <div *ngIf="formControls['postOperationNotes'].touched && formControls['postOperationNotes'].invalid" class="text-danger">
+              <small *ngIf="formControls['postOperationNotes'].errors?.['required']">Post operation notes are required</small>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="followUp" class="form-label">Follow Up</label>
+            <input type="text" class="form-control" id="followUp" formControlName="followUp">
+            <div *ngIf="formControls['followUp'].touched && formControls['followUp'].invalid" class="text-danger">
+              <small *ngIf="formControls['followUp'].errors?.['required']">Follow up details are required</small>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="patientForm.invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

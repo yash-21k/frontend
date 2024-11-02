@@ -1,0 +1,15 @@
+<div class="modal" [ngClass]="{'show': isVisible}" [ngStyle]="{ display: isVisible ? 'block' : 'none' }">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Enter Patient ID</h5>
+      <button type="button" class="btn-close" (click)="close()"></button>
+    </div>
+    <div class="modal-body">
+      <input [(ngModel)]="patientId" placeholder="Patient ID" class="form-control" />
+    </div>
+    <div class="modal-footer">
+      <button (click)="onGeneratePDF()" class="btn btn-primary">Generate PDF</button>
+      <button (click)="close()" class="btn btn-secondary">Close</button>
+    </div>
+  </div>
+</div>
